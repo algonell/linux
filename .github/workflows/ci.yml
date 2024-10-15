@@ -1,0 +1,17 @@
+name: kselftest
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: prerequisites
+      run: sudo apt-get install libelf-dev
+    - name: kselftest
+      run: make allyesconfig && make summary=1 kselftest
