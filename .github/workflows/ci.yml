@@ -1,0 +1,19 @@
+name: codespell
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  codespell:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: prerequisites
+      run: pip install codespell
+    - name: codespell
+      run: codespell -I exclude.txt > codespell.txt || true
+    - name: find
+      run: python find.py
