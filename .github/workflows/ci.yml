@@ -1,0 +1,17 @@
+name: test
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: prerequisites
+      run: sudo apt-get install libelf-dev
+    - name: make allmodconfig
+      run: make allmodconfig && make
