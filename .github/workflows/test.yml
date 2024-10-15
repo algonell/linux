@@ -1,0 +1,21 @@
+name: test
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: prerequisites
+      run: sudo apt-get install libelf-dev
+    - name: make oldconfig
+      run: yes '' | make oldconfig && scripts/config --disable SYSTEM_TRUSTED_KEYS && scripts/config --disable SYSTEM_REVOCATION_KEYS
+    - name: make all
+      run: make all
+    - name: make kselftest
+      run: make kselftest
