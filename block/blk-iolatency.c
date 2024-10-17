@@ -59,7 +59,7 @@
  * throttle_time = min(total_time, NSEC_PER_SEC)
  *
  * This induced delay will throttle back the activity that is generating the
- * root cg issued io's, wethere that's some metadata intensive operation or the
+ * root cg issued io's, whether that's some metadata intensive operation or the
  * group is using so much memory that it is pushing us into swap.
  *
  * Copyright (C) 2018 Josef Bacik
